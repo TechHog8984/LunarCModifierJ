@@ -1,7 +1,5 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-// import java.io.FileInputStream;
-// import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -72,8 +70,8 @@ public class Main {
                 return;
             };
 
-            appReader = new FileReader(AppPath, Charset.forName("ISO-8859-1")); //there is no actual problem here, probably something with the java extension.
-            backupWriter = new FileWriter(BackupPath, Charset.forName("ISO-8859-1")); //there is no actual problem here, probably something with the java extension.
+            appReader = new FileReader(AppPath, Charset.forName("ISO-8859-1"));
+            backupWriter = new FileWriter(BackupPath, Charset.forName("ISO-8859-1"));
 
             int character;
             while ((character = appReader.read()) != -1) {
@@ -113,8 +111,8 @@ public class Main {
                 return;
             };
 
-            backupReader = new FileReader(BackupPath, Charset.forName("ISO-8859-1")); //there is no actual problem here, probably something with the java extension.
-            appWriter = new FileWriter(AppPath, Charset.forName("ISO-8859-1")); //there is no actual problem here, probably something with the java extension.
+            backupReader = new FileReader(BackupPath, Charset.forName("ISO-8859-1"));
+            appWriter = new FileWriter(AppPath, Charset.forName("ISO-8859-1"));
 
             int character;
             while ((character = backupReader.read()) != -1) {
@@ -183,22 +181,49 @@ public class Main {
     private static boolean prompt(Scanner scanner) throws IOException,InterruptedException {
         System.out.print("\nEnter your choice: ");
         String text = scanner.nextLine();
-        if (text.equals("0")) {
-            return false;
-        } else if (text.equals("1")) {
-            printOptions();
-        } else if (text.equals("2")) {
-            openDirectory();
-        } else if (text.equals("3")) {
-            backupAsar();
-        } else if (text.equals("4")) {
-            restoreBackup();
-        } else if (text.equals("5")) {
-            decompile();
-        } else if (text.equals("6")) {
-            compile();
-        } else {
+
+        boolean ValidOption = true;
+        int NumberChoice = -1;
+
+        try {
+            NumberChoice = Integer.parseInt(text);
+            System.out.println(NumberChoice);
+        } catch(Exception e) {
+            ValidOption = false;
+        }
+
+        if (!ValidOption || NumberChoice == -1) {
             System.out.println("Invalid option");
+            return true;
+        };
+        
+        switch(NumberChoice){
+            case 0:
+                return false;
+            
+            case 1:
+                printOptions();
+                break;
+
+            case 2:
+                openDirectory();
+                break;
+
+            case 3:
+                backupAsar();
+                break;
+
+            case 4:
+                restoreBackup();
+                break;
+
+            case 5:
+                decompile();
+                break;
+
+            case 6:
+                compile();
+                break;
         };
 
         return true;
