@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+// import java.io.FileInputStream;
+// import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -70,8 +72,8 @@ public class Main {
                 return;
             };
 
-            appReader = new FileReader(AppPath, Charset.forName("ISO-8859-1"));
-            backupWriter = new FileWriter(BackupPath, Charset.forName("ISO-8859-1"));
+            appReader = new FileReader(AppPath, Charset.forName("ISO-8859-1")); //there is no actual problem here, probably something with the java extension.
+            backupWriter = new FileWriter(BackupPath, Charset.forName("ISO-8859-1")); //there is no actual problem here, probably something with the java extension.
 
             int character;
             while ((character = appReader.read()) != -1) {
@@ -111,8 +113,8 @@ public class Main {
                 return;
             };
 
-            backupReader = new FileReader(BackupPath, Charset.forName("ISO-8859-1"));
-            appWriter = new FileWriter(AppPath, Charset.forName("ISO-8859-1"));
+            backupReader = new FileReader(BackupPath, Charset.forName("ISO-8859-1")); //there is no actual problem here, probably something with the java extension.
+            appWriter = new FileWriter(AppPath, Charset.forName("ISO-8859-1")); //there is no actual problem here, probably something with the java extension.
 
             int character;
             while ((character = backupReader.read()) != -1) {
